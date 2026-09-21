@@ -9,7 +9,7 @@ struct Node
     int height;
 };
 
-int height(struct Node* node)
+int height(struct Node *node)
 {
     if (node == NULL)
         return 0;
@@ -22,9 +22,9 @@ int max(int a, int b)
     return (a > b) ? a : b;
 }
 
-struct Node* createNode(int data)
+struct Node *createNode(int data)
 {
-    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
 
     newNode->data = data;
     newNode->left = NULL;
@@ -34,10 +34,10 @@ struct Node* createNode(int data)
     return newNode;
 }
 
-struct Node* rightRotate(struct Node* y)
+struct Node *rightRotate(struct Node *y)
 {
-    struct Node* x = y->left;
-    struct Node* temp = x->right;
+    struct Node *x = y->left;
+    struct Node *temp = x->right;
 
     x->right = y;
     y->left = temp;
@@ -48,10 +48,10 @@ struct Node* rightRotate(struct Node* y)
     return x;
 }
 
-struct Node* leftRotate(struct Node* x)
+struct Node *leftRotate(struct Node *x)
 {
-    struct Node* y = x->right;
-    struct Node* temp = y->left;
+    struct Node *y = x->right;
+    struct Node *temp = y->left;
 
     y->left = x;
     x->right = temp;
@@ -62,7 +62,7 @@ struct Node* leftRotate(struct Node* x)
     return y;
 }
 
-int getBalance(struct Node* node)
+int getBalance(struct Node *node)
 {
     if (node == NULL)
         return 0;
@@ -70,7 +70,7 @@ int getBalance(struct Node* node)
     return height(node->left) - height(node->right);
 }
 
-struct Node* insert(struct Node* node, int data)
+struct Node *insert(struct Node *node, int data)
 {
     if (node == NULL)
         return createNode(data);
@@ -109,7 +109,7 @@ struct Node* insert(struct Node* node, int data)
     return node;
 }
 
-void inorder(struct Node* root)
+void inorder(struct Node *root)
 {
     if (root != NULL)
     {
@@ -121,7 +121,7 @@ void inorder(struct Node* root)
 
 int main()
 {
-    struct Node* root = NULL;
+    struct Node *root = NULL;
     int n, value;
 
     printf("Enter number of nodes: ");
