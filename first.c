@@ -1,103 +1,46 @@
-#include<stdio.h>
-
-#define MAX 5
-
-int arr
-[MAX];
-int top = -1;
-
-// !push method
-
-void push(){
-     int value;
-
-    if (top == MAX - 1)
-    {
-        printf("Stack Overflow!\n");
-        return;
-    }
-
-    printf("Enter element to push: ");
-    scanf("%d", &value);
-
-    top++;
-    arr[top] = value;
-
-    printf("%d inserted successfully.\n", value);
-
-
-}
-// ?pop method
-
-void pop()
-{
-    if (top == -1)
-    {
-        printf("Stack Underflow!\n");
-        return;
-    }
-
-    printf("%d deleted successfully.\n", arr[top]);
-    top--;
-}
-
-// ?disply method
-
-void display()
-{
-    int i;
-
-    if (top == -1)
-    {
-        printf("Stack is Empty.\n");
-        return;
-    }
-
-    printf("\nStack Elements are:\n");
-
-    for (i = top; i >= 0; i--)
-    {
-        printf("%d\n", arr[i]);
-    }
-}
+#include <stdio.h>
 
 int main()
 {
-    int choice;
+    int bucket, out, n, packet, i;
 
-    do
+    printf("Enter bucket size: ");
+    scanf("%d", &bucket);
+
+    printf("Enter output rate: ");
+    scanf("%d", &out);
+
+    printf("Enter number of packets: ");
+    scanf("%d", &n);
+
+    for(i = 1; i <= n; i++)
     {
-        printf("\n**** STACK MENU ****");
-        printf("\n1. Push");
-        printf("\n2. Pop");
-        printf("\n3. Display");
-        printf("\n4. Exit");
-        printf("\nEnter your choice: ");
-        scanf("%d", &choice);
+        printf("\nEnter packet size %d: ", i);
+        scanf("%d", &packet);
 
-        switch (choice)
+        if(packet > bucket)
         {
-        case 1:
-            push();
-            break;
-
-        case 2:
-            pop();
-            break;
-
-        case 3:
-            display();
-            break;
-
-        case 4:
-            printf("Program Terminated.\n");
-            break;
-
-        default:
-            printf("Invalid Choice!\n");
+            printf("Packet dropped! Bucket overflow.\n");
         }
+        else
+        {
+            printf("Packet accepted: %d\n", packet);
 
-    } while (choice != 4);
+            while(packet > 0)
+            {
+                if(packet >= out)
+                {
+                    packet = packet - out;
+                    printf("Transmitted: %d\n", out);
+                }
+                else
+                {
+                    printf("Transmitted: %d\n", packet);
+                    packet = 0;
+                }
+            }
+        }
+    }
 
     return 0;
 }

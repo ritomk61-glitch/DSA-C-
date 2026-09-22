@@ -2,46 +2,44 @@
 
 int main()
 {
-    int n, j, i, k;
-    int cost[10][10];
+    int bucket, out, n, packet, i;
 
-    printf("Enter no of routes: ");
+    printf("Enter bucket size: ");
+    scanf("%d", &bucket);
+
+    printf("Enter output rate: ");
+    scanf("%d", &out);
+
+    printf("Enter number of packets: ");
     scanf("%d", &n);
 
-    printf("Enter cost matrix:\n");
-
-    for (i = 0; i < n; i++)
+    for(i = 1; i <= n; i++)
     {
-        for (j = 0; j < n; j++)
+        printf("\nEnter packet size %d: ", i);
+        scanf("%d", &packet);
+
+        if(packet > bucket)
         {
-            scanf("%d", &cost[i][j]);
+            printf("Packet dropped! Bucket overflow.\n");
         }
-    }
-
-    for (k = 0; k < n; k++)
-    {
-        for (i = 0; i < n; i++)
+        else
         {
-            for (j = 0; j < n; j++)
+            printf("Packet accepted: %d\n", packet);
+
+            while(packet > 0)
             {
-                if (cost[i][j] > cost[i][k] + cost[k][j])
+                if(packet >= out)
                 {
-                    cost[i][j] = cost[i][k] + cost[k][j];
+                    packet = packet - out;
+                    printf("Transmitted: %d\n", out);
+                }
+                else
+                {
+                    printf("Transmitted: %d\n", packet);
+                    packet = 0;
                 }
             }
         }
-    }
-
-    printf("\nDistance vector table:\n");
-
-    for (i = 0; i < n; i++)
-    {
-        for (j = 0; j < n; j++)
-        {
-            printf("%d\t", cost[i][j]);
-        }
-
-        printf("\n");
     }
 
     return 0;
