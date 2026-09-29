@@ -17,38 +17,45 @@ void enqueuee(int value)
         {
             front = 0;
         }
-            rear++;
-            queue[rear] = value;
+        rear++;
+        queue[rear] = value;
 
-            // printf("value insert in the queue %d", value);
+        // printf("value insert in the queue %d", value);
     }
-
 };
 
 // delete
 
-void dequeue() {
-    if (front == -1 || front > rear) {
+void dequeue()
+{
+    if (front == -1 || front > rear)
+    {
         printf("Queue is Empty\n");
-    } else {
+    }
+    else
+    {
         printf("%d deleted from queue\n", queue[front]);
         front++;
     }
 }
-    // display part
+// display part
 
-    void display(){
-        if (front == -1 || front > rear) {
+void display()
+{
+    if (front == -1 || front > rear)
+    {
         printf("queue is emplty\n");
-        }
-        else {
-            printf("queue");
-            
-            for( int i = front ; i<=rear ; i++){
-                printf("inserted value is %d \n",queue[i]);
-            }
+    }
+    else
+    {
+        printf("queue");
+
+        for (int i = front; i <= rear; i++)
+        {
+            printf("inserted value is %d \n", queue[i]);
         }
     }
+}
 
 int main()
 {
